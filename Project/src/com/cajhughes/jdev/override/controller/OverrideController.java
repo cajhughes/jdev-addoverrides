@@ -22,13 +22,7 @@ public class OverrideController implements Controller {
         boolean enabled = false;
         if (context != null && NodeUtil.isEditableJavaSourceNode(context)) {
             JavaSourceNode node = (JavaSourceNode)context.getNode();
-            ProjectFileProvider provider = ProjectFileProvider.getInstance(Ide.getActiveProject());
-            if (provider != null) {
-                JavaFile file = provider.getFile(node.getURL());
-                if (file != null && file instanceof SourceFile) {
-                    enabled = AnnotationUtil.containsUndeclaredOverrides((SourceFile)file);
-                }
-            }
+            enabled = AnnotationUtil.containsUndeclaredOverrides(NodeUtil.getSourceFile(node));
         }
         action.setEnabled(enabled);
         return true;

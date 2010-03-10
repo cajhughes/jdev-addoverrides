@@ -12,12 +12,11 @@ import oracle.ide.Ide;
 import oracle.ide.controller.Command;
 import oracle.ide.model.Node;
 import oracle.javatools.buffer.TextBuffer;
-import oracle.javatools.parser.java.v2.model.JavaFile;
 import oracle.javatools.parser.java.v2.model.JavaMethod;
 import oracle.javatools.parser.java.v2.model.SourceClass;
 import oracle.javatools.parser.java.v2.model.SourceFile;
 import oracle.javatools.parser.java.v2.model.SourceMethod;
-import oracle.jdeveloper.java.provider.ProjectFileProvider;
+
 import oracle.jdeveloper.model.JavaSourceNode;
 
 public class OverrideCommand extends Command {
@@ -94,7 +93,7 @@ public class OverrideCommand extends Command {
             if (context != null) {
                 if (NodeUtil.isEditableJavaSourceNode(context)) {
                     JavaSourceNode node = (JavaSourceNode)context.getNode();
-                    if (AnnotationUtil.containsUndeclaredOverrides(getSourceFile(node))) {
+                    if (AnnotationUtil.containsUndeclaredOverrides(NodeUtil.getSourceFile(node))) {
                         try {
                             Ide.getWaitCursor().show();
                             TextBuffer buffer = node.acquireTextBuffer();
@@ -151,23 +150,9 @@ public class OverrideCommand extends Command {
         return (count > 0);
     }
 
-    private SourceFile getSourceFile(final JavaSourceNode node) {
-        SourceFile sourceFile = null;
-        if (node != null) {
-            ProjectFileProvider provider = ProjectFileProvider.getInstance(Ide.getActiveProject());
-            if (provider != null) {
-                JavaFile javaFile = provider.getFile(node.getURL());
-                if (javaFile != null && javaFile instanceof SourceFile) {
-                    sourceFile = (SourceFile)javaFile;
-                }
-            }
-        }
-        return sourceFile;
-    }
-
     private Collection<SourceClass> getSourceClasses(final JavaSourceNode node) {
         Collection<SourceClass> sourceClasses = Collections.emptyList();
-        SourceFile sourceFile = getSourceFile(node);
+        SourceFile sourceFile = NodeUtil.getSourceFile(node);
         if (sourceFile != null) {
             sourceClasses = sourceFile.getSourceClasses();
         }
