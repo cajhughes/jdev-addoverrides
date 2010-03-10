@@ -12,11 +12,13 @@ import oracle.jdeveloper.java.provider.ProjectFileProvider;
 import oracle.jdeveloper.model.JavaSourceNode;
 
 public class OverrideController implements Controller {
-    @Override public boolean handleEvent(IdeAction ideAction, Context context) {
+    @Override
+    public boolean handleEvent(IdeAction ideAction, Context context) {
         return false;
     }
 
-    @Override public boolean update(final IdeAction action, final Context context) {
+    @Override
+    public boolean update(final IdeAction action, final Context context) {
         boolean enabled = false;
         if (context != null && NodeUtil.isEditableJavaSourceNode(context)) {
             JavaSourceNode node = (JavaSourceNode)context.getNode();

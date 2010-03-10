@@ -19,11 +19,13 @@ public final class OverrideKeyStrokeContext implements KeyStrokeContext {
         keyStrokeMap.put(keyStrokes, action.getCommandId());
     }
 
-    @Override public String getAcceleratorFile() {
+    @Override
+    public String getAcceleratorFile() {
         return null;
     }
 
-    @Override public Set getAllActions(final boolean global) {
+    @Override
+    public Set getAllActions(final boolean global) {
         if (global) {
             return actions;
         }
@@ -32,15 +34,18 @@ public final class OverrideKeyStrokeContext implements KeyStrokeContext {
         }
     }
 
-    @Override public List getAllPresets() {
+    @Override
+    public List getAllPresets() {
         return Collections.emptyList();
     }
 
-    @Override public String getName() {
+    @Override
+    public String getName() {
         return OverrideResourceUtil.getString("EXTENSION_NAME");
     }
 
-    @Override public KeyStrokeMap getPresetKeyStrokeMap(final Object object, final boolean global) {
+    @Override
+    public KeyStrokeMap getPresetKeyStrokeMap(final Object object, final boolean global) {
         if (global) {
             return keyStrokeMap;
         }
