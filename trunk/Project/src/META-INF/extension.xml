@@ -10,6 +10,7 @@
       <actions>
         <action id="com.cajhughes.jdev.AddOverrides">
           <properties>
+            <property name="Category">Source</property>
             <property name="Name">${EXTENSION_NAME}</property>
             <property name="LongDescription">${DESCRIPTION}</property>
           </properties>
@@ -26,5 +27,9 @@
         </site>
       </context-menu-listeners>
     </jdeveloper-hook>
+    <feature-hook>
+      <description>${DESCRIPTION}</description>
+      <optional>true</optional>
+    </feature-hook>
   </hooks>
 </extension>
