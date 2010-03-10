@@ -7,7 +7,7 @@
     <u:version>11.1.0</u:version>
     <u:author>Chris Hughes</u:author>
     <u:author-url>http://code.google.com/p/jdev-addoverrides/</u:author-url>
-    <u:description>Analyses your current Java source file, and adds @Override annotations to overridden methods</u:description>
+    <u:description>Analyzes your current Java source file, and inserts an @Override annotation for all overriding methods with no existing annotation</u:description>
     <u:requirements>
       <u:requires-extension id="oracle.ide" minVersion="11.1.1"/>
     </u:requirements>
