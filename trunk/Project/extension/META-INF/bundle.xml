@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<update-bundle version="1.0"
+  xmlns="http://xmlns.oracle.com/jdeveloper/updatebundle"
+  xmlns:u="http://xmlns.oracle.com/jdeveloper/update">
+  <u:update id="com.cajhughes.jdev.AddOverrides">
+    <u:name>Add @Override(s)</u:name>
+    <u:version>11.1.0</u:version>
+    <u:author>Chris Hughes</u:author>
+    <u:author-url>http://code.google.com/p/jdev-addoverrides/</u:author-url>
+    <u:description>Analyses your current Java source file, and adds @Override annotations to overridden methods</u:description>
+    <u:requirements>
+      <u:requires-extension id="oracle.ide" minVersion="11.1.1"/>
+    </u:requirements>
+  </u:update>
+</update-bundle>
