@@ -94,20 +94,22 @@ public class OverrideCommand extends Command {
             if (context != null) {
                 if (NodeUtil.isEditableJavaSourceNode(context)) {
                     JavaSourceNode node = (JavaSourceNode)context.getNode();
-                    try {
-                        Ide.getWaitCursor().show();
-                        TextBuffer buffer = node.acquireTextBuffer();
+                    if (AnnotationUtil.containsUndeclaredOverrides(getSourceFile(node))) {
                         try {
-                            buffer.writeLock();
-                            undo.undo();
+                            Ide.getWaitCursor().show();
+                            TextBuffer buffer = node.acquireTextBuffer();
+                            try {
+                                buffer.writeLock();
+                                undo.undo();
+                            }
+                            finally {
+                                buffer.writeUnlock();
+                            }
                         }
                         finally {
-                            buffer.writeUnlock();
+                            node.releaseTextBuffer();
+                            Ide.getWaitCursor().hide();
                         }
-                    }
-                    finally {
-                        node.releaseTextBuffer();
-                        Ide.getWaitCursor().hide();
                     }
                 }
             }
@@ -149,17 +151,25 @@ public class OverrideCommand extends Command {
         return (count > 0);
     }
 
-    private Collection<SourceClass> getSourceClasses(final JavaSourceNode node) {
-        Collection<SourceClass> sourceClasses = Collections.emptyList();
+    private SourceFile getSourceFile(final JavaSourceNode node) {
+        SourceFile sourceFile = null;
         if (node != null) {
             ProjectFileProvider provider = ProjectFileProvider.getInstance(Ide.getActiveProject());
             if (provider != null) {
                 JavaFile javaFile = provider.getFile(node.getURL());
                 if (javaFile != null && javaFile instanceof SourceFile) {
-                    SourceFile sourceFile = (SourceFile)javaFile;
-                    sourceClasses = sourceFile.getSourceClasses();
+                    sourceFile = (SourceFile)javaFile;
                 }
             }
+        }
+        return sourceFile;
+    }
+
+    private Collection<SourceClass> getSourceClasses(final JavaSourceNode node) {
+        Collection<SourceClass> sourceClasses = Collections.emptyList();
+        SourceFile sourceFile = getSourceFile(node);
+        if (sourceFile != null) {
+            sourceClasses = sourceFile.getSourceClasses();
         }
         return sourceClasses;
     }

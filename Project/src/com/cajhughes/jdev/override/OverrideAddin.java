@@ -13,6 +13,7 @@ public final class OverrideAddin implements Addin {
 
     @Override
     public void initialize() {
+        // Define the default shortcut key as Alt-O
         OverrideKeyStrokeContext trimContext = new OverrideKeyStrokeContext();
         trimContext.add(IdeAction.find(OverrideCommand.actionId()), new KeyStrokes(overrideShortcut));
         Ide.getKeyStrokeContextRegistry().addContext(trimContext);
