@@ -11,7 +11,8 @@ import oracle.ide.keyboard.KeyStrokes;
 public final class OverrideAddin implements Addin {
     private static final KeyStroke overrideShortcut = KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.ALT_DOWN_MASK);
 
-    @Override public void initialize() {
+    @Override
+    public void initialize() {
         OverrideKeyStrokeContext trimContext = new OverrideKeyStrokeContext();
         trimContext.add(IdeAction.find(OverrideCommand.actionId()), new KeyStrokes(overrideShortcut));
         Ide.getKeyStrokeContextRegistry().addContext(trimContext);
