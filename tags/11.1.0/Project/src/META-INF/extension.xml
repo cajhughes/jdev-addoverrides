@@ -1,0 +1,36 @@
+<extension id="com.cajhughes.jdev.AddOverrides"
+           version="11.1.0"
+           esdk-version="1.0"
+           rsbundle-class="com.cajhughes.jdev.override.Resource"
+           xmlns="http://jcp.org/jsr/198/extension-manifest">
+  <name>${EXTENSION_NAME}</name>
+  <owner>${OWNER_NAME}</owner>
+  <hooks>
+    <jdeveloper-hook xmlns="http://xmlns.oracle.com/jdeveloper/1013/extension">
+      <actions>
+        <action id="com.cajhughes.jdev.AddOverrides">
+          <properties>
+            <property name="Category">Source</property>
+            <property name="Name">${EXTENSION_NAME}</property>
+            <property name="LongDescription">${DESCRIPTION}</property>
+            <property name="SmallIcon">${ICON}</property>
+          </properties>
+          <controller-class>com.cajhughes.jdev.override.controller.OverrideController</controller-class>
+          <command-class>com.cajhughes.jdev.override.OverrideCommand</command-class>
+        </action>
+      </actions>
+      <addins>
+        <addin>com.cajhughes.jdev.override.OverrideAddin</addin>
+      </addins>
+      <context-menu-listeners>
+        <site idref="editor">
+          <listener-class>com.cajhughes.jdev.override.view.OverrideMenuListener</listener-class>
+        </site>
+      </context-menu-listeners>
+    </jdeveloper-hook>
+    <feature-hook>
+      <description>${DESCRIPTION}</description>
+      <optional>true</optional>
+    </feature-hook>
+  </hooks>
+</extension>
