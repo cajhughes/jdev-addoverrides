@@ -12,4 +12,5 @@ Following successful installation, and re-start of JDeveloper, the extension can
   * *Be part of the active Project, otherwise the class cannot be analyzed*
   * *Have overriding methods declared without the @Override annotation specified*
 
+
 http://dl.dropbox.com/u/191565/jdev/override-usage.png
