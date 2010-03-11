@@ -1,7 +1,7 @@
 package com.cajhughes.jdev.override;
 
-import com.cajhughes.jdev.override.controller.OverrideDynamicMenuListener;
-import com.cajhughes.jdev.override.controller.OverrideEditorListener;
+import com.cajhughes.jdev.override.view.OverrideDynamicMenuListener;
+import com.cajhughes.jdev.override.view.OverrideEditorListener;
 import com.cajhughes.jdev.override.view.OverrideKeyStrokeContext;
 import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;

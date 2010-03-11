@@ -1,4 +1,4 @@
-package com.cajhughes.jdev.override.controller;
+package com.cajhughes.jdev.override.view;
 
 import com.cajhughes.jdev.override.OverrideCommand;
 import com.cajhughes.jdev.override.util.NodeUtil;
