@@ -9,7 +9,7 @@ import oracle.ide.editor.Editor;
 import oracle.ide.editor.EditorListener;
 
 public final class OverrideEditorListener implements EditorListener {
-
+    @Override
     public void editorOpened(Editor editor) {
         Context context = editor.getContext();
         if (NodeUtil.isJavaSourceNode(context)) {
@@ -18,12 +18,15 @@ public final class OverrideEditorListener implements EditorListener {
         }
     }
 
+    @Override
     public void editorActivated(Editor editor) {
     }
 
+    @Override
     public void editorDeactivated(Editor editor) {
     }
 
+    @Override
     public void editorClosed(Editor editor) {
     }
 }
