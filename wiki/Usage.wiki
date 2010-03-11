@@ -1,0 +1,11 @@
+#labels Featured
+# How to Use the extension
+
+Following successful installation, and re-start of JDeveloper, the extension can be invoked via:
+
+  * Selecting Source -> Add @Override(s) in the top-level menu
+  * Clicking the button in the code editor toolbar
+  * Selecting the context menu (right-click or CTRL-click) within the Code Editor
+  * Using the keyboard shortcut (initially assigned to Alt-O)
+
+http://dl.dropbox.com/u/191565/jdev/override-usage.png
