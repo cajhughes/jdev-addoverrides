@@ -13,6 +13,7 @@
             <property name="Category">Source</property>
             <property name="Name">${EXTENSION_NAME}</property>
             <property name="LongDescription">${DESCRIPTION}</property>
+            <property name="SmallIcon">${ICON}</property>
           </properties>
           <controller-class>com.cajhughes.jdev.override.controller.OverrideController</controller-class>
           <command-class>com.cajhughes.jdev.override.OverrideCommand</command-class>

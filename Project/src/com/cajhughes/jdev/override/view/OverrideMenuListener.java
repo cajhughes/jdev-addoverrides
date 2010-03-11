@@ -9,7 +9,8 @@ import oracle.ide.controller.IdeAction;
 public class OverrideMenuListener implements ContextMenuListener {
     @Override
     public void menuWillShow(final ContextMenu contextMenu) {
-        contextMenu.add(contextMenu.createMenuItem(IdeAction.find(OverrideCommand.actionId())));
+        contextMenu.add(contextMenu.createMenuItem(IdeAction.find(OverrideCommand.actionId()),
+                                                   OverrideCommand.WEIGHT_ADD_OVERRIDES));
     }
 
     @Override

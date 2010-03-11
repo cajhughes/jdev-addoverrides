@@ -26,6 +26,8 @@ public class OverrideCommand extends Command {
     private static final String OVERRIDE_ANNOTATION = "@Override ";
     private static final int ANNOTATION_LENGTH = OVERRIDE_ANNOTATION.length();
 
+    public static final float WEIGHT_ADD_OVERRIDES = 405.0f;
+
     private UndoableEdit undo;
 
     public OverrideCommand() {
