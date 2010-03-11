@@ -51,22 +51,24 @@ public class OverrideCommand extends Command {
         if (context != null) {
             if (NodeUtil.isEditableJavaSourceNode(context)) {
                 JavaSourceNode node = (JavaSourceNode)context.getNode();
-                try {
-                    Ide.getWaitCursor().show();
-                    TextBuffer buffer = node.acquireTextBuffer();
+                if (AnnotationUtil.containsUndeclaredOverrides(NodeUtil.getSourceFile(node))) {
                     try {
-                        buffer.writeLock();
-                        if (addOverrides(node, buffer)) {
-                            node.markDirty(true);
+                        Ide.getWaitCursor().show();
+                        TextBuffer buffer = node.acquireTextBuffer();
+                        try {
+                            buffer.writeLock();
+                            if (addOverrides(node, buffer)) {
+                                node.markDirty(true);
+                            }
+                        }
+                        finally {
+                            buffer.writeUnlock();
                         }
                     }
                     finally {
-                        buffer.writeUnlock();
+                        node.releaseTextBuffer();
+                        Ide.getWaitCursor().hide();
                     }
-                }
-                finally {
-                    node.releaseTextBuffer();
-                    Ide.getWaitCursor().hide();
                 }
             }
         }
@@ -95,22 +97,20 @@ public class OverrideCommand extends Command {
             if (context != null) {
                 if (NodeUtil.isEditableJavaSourceNode(context)) {
                     JavaSourceNode node = (JavaSourceNode)context.getNode();
-                    if (AnnotationUtil.containsUndeclaredOverrides(NodeUtil.getSourceFile(node))) {
+                    try {
+                        Ide.getWaitCursor().show();
+                        TextBuffer buffer = node.acquireTextBuffer();
                         try {
-                            Ide.getWaitCursor().show();
-                            TextBuffer buffer = node.acquireTextBuffer();
-                            try {
-                                buffer.writeLock();
-                                undo.undo();
-                            }
-                            finally {
-                                buffer.writeUnlock();
-                            }
+                            buffer.writeLock();
+                            undo.undo();
                         }
                         finally {
-                            node.releaseTextBuffer();
-                            Ide.getWaitCursor().hide();
+                            buffer.writeUnlock();
                         }
+                    }
+                    finally {
+                        node.releaseTextBuffer();
+                        Ide.getWaitCursor().hide();
                     }
                 }
             }
