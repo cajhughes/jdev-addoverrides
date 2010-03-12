@@ -3,6 +3,7 @@
   <property file="build.properties"/>
   <path id="library.JDeveloper.Extension.SDK">
     <pathelement location="${oracle.home}/ide/extensions/oracle.ide.jar"/>
+    <pathelement location="${oracle.home}/ide/lib/annotations.jar"/>
     <pathelement location="${oracle.home}/ide/lib/idert.jar"/>
     <pathelement location="${oracle.home}/ide/lib/javatools.jar"/>
     <pathelement location="${oracle.home}/jdev/lib/javacore.jar"/>
