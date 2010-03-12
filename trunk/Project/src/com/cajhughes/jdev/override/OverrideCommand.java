@@ -5,14 +5,12 @@ import com.cajhughes.jdev.override.util.NodeUtil;
 import com.cajhughes.jdev.override.view.resource.OverrideResourceUtil;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import javax.swing.undo.UndoableEdit;
 import oracle.ide.Context;
 import oracle.ide.Ide;
 import oracle.ide.controller.Command;
 import oracle.ide.model.Node;
 import oracle.javatools.buffer.TextBuffer;
-import oracle.javatools.parser.java.v2.model.JavaMethod;
 import oracle.javatools.parser.java.v2.model.SourceClass;
 import oracle.javatools.parser.java.v2.model.SourceFile;
 import oracle.javatools.parser.java.v2.model.SourceMethod;
@@ -120,31 +118,16 @@ public class OverrideCommand extends Command {
 
     private boolean addOverrides(final JavaSourceNode node, final TextBuffer buffer) {
         int count = 0;
-        String bufferAsString = buffer.getString(0, buffer.getLength());
         Collection<SourceClass> sourceClasses = getSourceClasses(node);
         buffer.beginEdit();
         for (SourceClass sourceClass : sourceClasses) {
             @SuppressWarnings("unchecked")
-            Collection<JavaMethod> methods = sourceClass.getDeclaredMethods();
-
-            // Loop through the methods to get all the offsets
-            HashMap offsets = new HashMap();
-            for (JavaMethod method : methods) {
-                SourceMethod sourceMethod = sourceClass.getSourceMethod(method.getName(), method.getParameterTypes());
-                int offset = bufferAsString.indexOf(sourceMethod.getText());
-                offsets.put(sourceMethod, Integer.valueOf(offset));
-            }
-
-            // Loop through a second time to insert annotation where desired
-            for (JavaMethod method : methods) {
+            Collection<SourceMethod> methods = sourceClass.getSourceMethods();
+            for (SourceMethod method : methods) {
                 if (AnnotationUtil.overrides(method) && !AnnotationUtil.hasOverrideAnnotation(method)) {
-                    SourceMethod sourceMethod =
-                        sourceClass.getSourceMethod(method.getName(), method.getParameterTypes());
-                    int offset = (Integer)offsets.get(sourceMethod);
-                    if (offset != -1) {
-                        buffer.insert(offset + (count * ANNOTATION_LENGTH), OVERRIDE_ANNOTATION.toCharArray());
-                        count++;
-                    }
+                    buffer.insert(method.getStartOffset() + (count * ANNOTATION_LENGTH),
+                                  OVERRIDE_ANNOTATION.toCharArray());
+                    count++;
                 }
             }
         }
