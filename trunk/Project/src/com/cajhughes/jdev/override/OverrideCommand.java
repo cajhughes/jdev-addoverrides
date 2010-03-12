@@ -4,7 +4,6 @@ import com.cajhughes.jdev.override.util.AnnotationUtil;
 import com.cajhughes.jdev.override.util.NodeUtil;
 import com.cajhughes.jdev.override.view.resource.OverrideResourceUtil;
 import java.util.Collection;
-import java.util.Collections;
 import javax.swing.undo.UndoableEdit;
 import oracle.ide.Context;
 import oracle.ide.Ide;
@@ -18,13 +17,13 @@ import oracle.javatools.parser.java.v2.model.SourceMethod;
 import oracle.jdeveloper.model.JavaSourceNode;
 
 public class OverrideCommand extends Command {
+    public static final float WEIGHT_ADD_OVERRIDES = 405.0f;
+
     private static final Node affectedNodes[] = { };
     private static final String EXTENSION_ID = "com.cajhughes.jdev.AddOverrides";
     private static final String EXTENSION_NAME = OverrideResourceUtil.getString("EXTENSION_NAME");
     private static final String OVERRIDE_ANNOTATION = "@Override ";
     private static final int ANNOTATION_LENGTH = OVERRIDE_ANNOTATION.length();
-
-    public static final float WEIGHT_ADD_OVERRIDES = 405.0f;
 
     private UndoableEdit undo;
 
@@ -118,29 +117,24 @@ public class OverrideCommand extends Command {
 
     private boolean addOverrides(final JavaSourceNode node, final TextBuffer buffer) {
         int count = 0;
-        Collection<SourceClass> sourceClasses = getSourceClasses(node);
-        buffer.beginEdit();
-        for (SourceClass sourceClass : sourceClasses) {
-            @SuppressWarnings("unchecked")
-            Collection<SourceMethod> methods = sourceClass.getSourceMethods();
-            for (SourceMethod method : methods) {
-                if (AnnotationUtil.overrides(method) && !AnnotationUtil.hasOverrideAnnotation(method)) {
-                    buffer.insert(method.getStartOffset() + (count * ANNOTATION_LENGTH),
-                                  OVERRIDE_ANNOTATION.toCharArray());
-                    count++;
-                }
-            }
-        }
-        undo = buffer.endEdit();
-        return (count > 0);
-    }
-
-    private Collection<SourceClass> getSourceClasses(final JavaSourceNode node) {
-        Collection<SourceClass> sourceClasses = Collections.emptyList();
         SourceFile sourceFile = NodeUtil.getSourceFile(node);
         if (sourceFile != null) {
-            sourceClasses = sourceFile.getSourceClasses();
+            @SuppressWarnings("unchecked")
+            Collection<SourceClass> sourceClasses = sourceFile.getSourceClasses();
+            buffer.beginEdit();
+            for (SourceClass sourceClass : sourceClasses) {
+                @SuppressWarnings("unchecked")
+                Collection<SourceMethod> methods = sourceClass.getSourceMethods();
+                for (SourceMethod method : methods) {
+                    if (AnnotationUtil.overrides(method) && !AnnotationUtil.hasOverrideAnnotation(method)) {
+                        buffer.insert(method.getStartOffset() + (count * ANNOTATION_LENGTH),
+                                      OVERRIDE_ANNOTATION.toCharArray());
+                        count++;
+                    }
+                }
+            }
+            undo = buffer.endEdit();
         }
-        return sourceClasses;
+        return (count > 0);
     }
 }

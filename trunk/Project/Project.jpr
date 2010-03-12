@@ -88,15 +88,19 @@
    <hash n="oracle.jdevimpl.config.JProjectLibraries">
       <list n="exportedReferences">
          <hash>
+            <value n="id" v="Annotations.jar"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
             <value n="id" v="Javacore.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Javatools-nodeps.jar"/>
+            <value n="id" v="Javamodel-rt.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Javamodel-rt.jar"/>
+            <value n="id" v="Javatools-nodeps.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -129,19 +133,32 @@
                <value n="id" v="Javamodel-rt.jar"/>
                <value n="locked" v="true"/>
             </hash>
+            <hash>
+               <list n="classPath">
+                  <url path="../../../../jdeveloper/ide/lib/annotations.jar" jar-entry=""/>
+               </list>
+               <value n="deployedByDefault" v="true"/>
+               <value n="description" v="Annotations.jar"/>
+               <value n="id" v="Annotations.jar"/>
+               <value n="locked" v="true"/>
+            </hash>
          </list>
       </hash>
       <list n="libraryReferences">
+         <hash>
+            <value n="id" v="Annotations.jar"/>
+            <value n="isJDK" v="false"/>
+         </hash>
          <hash>
             <value n="id" v="Javacore.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Javatools-nodeps.jar"/>
+            <value n="id" v="Javamodel-rt.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Javamodel-rt.jar"/>
+            <value n="id" v="Javatools-nodeps.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
