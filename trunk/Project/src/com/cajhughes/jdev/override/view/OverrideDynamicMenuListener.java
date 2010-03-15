@@ -10,6 +10,12 @@ import oracle.ide.controller.DynamicMenuListener;
 import oracle.ide.controller.IdeAction;
 import oracle.ide.controller.Menubar;
 
+/**
+ * This class implements the DynamicMenuListener interface, and exists so that
+ * we can associate our action with a menu item in the dynamic, "Source", menu.
+ *
+ * @author Chris Hughes
+ */
 public final class OverrideDynamicMenuListener implements DynamicMenuListener {
     @Override
     public JComponent[] gatherDynamicActions(final Context context) {
