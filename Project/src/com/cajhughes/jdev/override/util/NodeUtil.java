@@ -8,6 +8,12 @@ import oracle.javatools.parser.java.v2.model.SourceFile;
 import oracle.jdeveloper.java.provider.ProjectFileProvider;
 import oracle.jdeveloper.model.JavaSourceNode;
 
+/**
+ * This class provides static helper methods for identifying nodes within
+ * the JDeveloper framework.
+ *
+ * @author Chris Hughes
+ */
 public final class NodeUtil {
     public static SourceFile getSourceFile(final JavaSourceNode node) {
         SourceFile sourceFile = null;

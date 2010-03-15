@@ -8,6 +8,12 @@ import oracle.ide.controls.Toolbar;
 import oracle.ide.editor.Editor;
 import oracle.ide.editor.EditorListener;
 
+/**
+ * This class implements the EditorListener interface, and exists so that we
+ * can associate our action with a button within the Code Editor toolbar.
+ *
+ * @author Chris Hughes
+ */
 public final class OverrideEditorListener implements EditorListener {
     @Override
     public void editorOpened(Editor editor) {

@@ -13,9 +13,14 @@ import oracle.javatools.buffer.TextBuffer;
 import oracle.javatools.parser.java.v2.model.SourceClass;
 import oracle.javatools.parser.java.v2.model.SourceFile;
 import oracle.javatools.parser.java.v2.model.SourceMethod;
-
 import oracle.jdeveloper.model.JavaSourceNode;
 
+/**
+ * This class extends the Command class, and provides the core implementation
+ * of the AddOverrides action.
+ *
+ * @author Chris Hughes
+ */
 public class OverrideCommand extends Command {
     public static final float WEIGHT_ADD_OVERRIDES = 405.0f;
 

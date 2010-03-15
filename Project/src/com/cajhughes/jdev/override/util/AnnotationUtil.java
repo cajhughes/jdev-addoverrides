@@ -6,6 +6,11 @@ import oracle.javatools.parser.java.v2.model.JavaMethod;
 import oracle.javatools.parser.java.v2.model.SourceClass;
 import oracle.javatools.parser.java.v2.model.SourceFile;
 
+/**
+ * This class provides static helper methods for identifying annotation usage.
+ *
+ * @author Chris Hughes
+ */
 public final class AnnotationUtil {
     private static final String OVERRIDE = "Override";
 

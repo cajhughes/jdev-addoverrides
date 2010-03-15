@@ -6,6 +6,12 @@ import oracle.ide.controller.ContextMenu;
 import oracle.ide.controller.ContextMenuListener;
 import oracle.ide.controller.IdeAction;
 
+/**
+ * This class implements the ContextMenuListener interface, and exists to add
+ * the AddOverrides action to the context menu within the CodeEditor.
+ *
+ * @author Chris Hughes
+ */
 public class OverrideMenuListener implements ContextMenuListener {
     @Override
     public void menuWillShow(final ContextMenu contextMenu) {

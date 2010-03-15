@@ -7,6 +7,16 @@ import oracle.ide.controller.Controller;
 import oracle.ide.controller.IdeAction;
 import oracle.jdeveloper.model.JavaSourceNode;
 
+/**
+ * This class implements the Controller interface, and exists to update the
+ * enabled status of the AddOverrides action based on:
+ *
+ * (a) The current node represents a Java source file
+ * (b) The Java source file is editable
+ * (c) The file being edited contains overriding methods that are not annotated as such
+ *
+ * @author Chris Hughes
+ */
 public class OverrideController implements Controller {
     @Override
     public boolean handleEvent(IdeAction ideAction, Context context) {

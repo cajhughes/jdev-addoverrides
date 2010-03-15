@@ -10,6 +10,13 @@ import oracle.ide.keyboard.KeyStrokeContext;
 import oracle.ide.keyboard.KeyStrokeMap;
 import oracle.ide.keyboard.KeyStrokes;
 
+/**
+ * This class implements the KeyStrokeContext interface, and exists to define
+ * the scope in which the shortcut key defined for the AddOverrides action
+ * should act.
+ *
+ * @author Chris Hughes
+ */
 public final class OverrideKeyStrokeContext implements KeyStrokeContext {
     private final Set<IdeAction> actions = new HashSet<IdeAction>();
     private final KeyStrokeMap keyStrokeMap = new KeyStrokeMap();
