@@ -20,7 +20,9 @@ public final class OverrideEditorListener implements EditorListener {
         Context context = editor.getContext();
         if (NodeUtil.isJavaSourceNode(context)) {
             Toolbar toolbar = editor.getToolbar();
-            toolbar.add(IdeAction.find(OverrideCommand.actionId()));
+            if (toolbar != null) {
+                toolbar.add(IdeAction.find(OverrideCommand.actionId()));
+            }
         }
     }
 
